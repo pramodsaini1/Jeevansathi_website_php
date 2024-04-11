@@ -4,14 +4,13 @@ if(isset($_COOKIE["login"]) && isset($_SESSION["user"])){
     $email=$_COOKIE["login"];
     if(isset($_GET["code"])){
         $code=$_GET["code"];
-        $oldImagePath ="profile/" . $code.".jpg" ;
+        $oldImagePath ="";
          $conn=mysqli_connect("localhost","root","","wedding");
-        $sn=0;
-        $rs=mysqli_query($conn,"select * from template where email='$email' AND code='$code'");
+         $rs=mysqli_query($conn,"select * from template where email='$email' AND code='$code'");
         if($r=mysqli_fetch_array($rs)){
-           $sn=$r["sn"];
+           $oldImagePath=$r["image"];
         }
-        $newImagePath = "profile/" . $code."_".$sn.".jpg" ;
+        $newImagePath = "profile/" . $code.".jpg" ;
          if(mysqli_query($conn,"update template set image='$newImagePath' where email='$email' AND code='$code'")>0){
              if(file_exists($oldImagePath)){
                 unlink($oldImagePath);

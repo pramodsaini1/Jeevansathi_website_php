@@ -3,7 +3,7 @@ session_start();
 if(isset($_COOKIE["login"]) && isset($_SESSION["user"])){
    $email=$_COOKIE["login"];
    if(isset($_GET["code"])){
-      $code =$_GET["code"];
+      $code =validate($_GET["code"]);
       $conn=mysqli_connect("localhost","root","","wedding");
       $rs=mysqli_query($conn,"select * from template where email='$email' AND code='$code'");
       if($r=mysqli_fetch_array($rs)){  
@@ -150,7 +150,7 @@ if(isset($_COOKIE["login"]) && isset($_SESSION["user"])){
 				   ?>
                     </div>
 					<div class="col-sm-4" data-aos="fade-right">
-					    <img src="profile/<?php echo $r["code"]?>.jpg" class="img-fluid">
+					    <img src="<?php echo $r["image"]?>" class="img-fluid">
 					
 					</div>
 					<div class="col-sm-8" data-aos="fade-left" id="profile">
@@ -373,5 +373,11 @@ AOS.init({
 }
 else{
     header("location:login.php");
+}
+function validate($data){
+  $data=trim($data);
+  $data=stripslashes($data);
+  $data=htmlspecialchars($data);
+  return $data;
 }
 ?>

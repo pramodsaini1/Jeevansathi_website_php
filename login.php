@@ -26,6 +26,15 @@ if(isset($_COOKIE["login"]) && isset($_SESSION["user"])){
   if (document.location.search.match(/type=embed/gi)) {
     window.parent.postMessage("resize", "*");
   }
+
+  $(document).ready(function(){
+    $(".btn.btn-primary").click(function(){
+       var email=$("#email").val();
+        $.ajax({
+          
+        });
+    })
+  })
 </script>
 <style>
 .fa-facebook {
@@ -134,7 +143,7 @@ if(isset($_COOKIE["login"]) && isset($_SESSION["user"])){
 	    <img src = "images/login.jpg" class="img-fluid">
         </div>
 		<div class="col-sm-5" data-aos="flip-left" >	
-								   <div class="card card-default" style="margin-top:80px">
+						<div class="card card-default" style="margin-top:80px">
             <div class="card-header" id="msg"><center><img src="images/11.png" style="width:50px;height:50px"> Jeevansathi.com Login </center></div>
             <div class="card-body">
               <?php
@@ -155,7 +164,7 @@ if(isset($_COOKIE["login"]) && isset($_SESSION["user"])){
                     <div class="input-group-prepend">
                       <span class="input-group-text">@</span>
                     </div>
-                    <input type="email" class="form-control input-lg" name="email" placeholder="Email" required>
+                    <input type="email" class="form-control input-lg" id="email" name="email" placeholder="Email" required>
                   </div>
                   
                   <br>
@@ -177,8 +186,8 @@ if(isset($_COOKIE["login"]) && isset($_SESSION["user"])){
 					      
 						 </div>
 						 <div class="card-footer">
-                   
-                               <button id="register" class="btn btn-success" style='color:white;float:right'><a style="text-decoration:none;color:white" href="Register.php">New User ? Register</a></button>
+                <button class="btn btn-primary" style="color:white;float:left">Forgot Password</button>   
+                <button id="register" class="btn btn-success" style='color:white;float:right'><a style="text-decoration:none;color:white" href="Register.php">New User ? Register</a></button>
             </div>
 						 </div>
 			          </div>

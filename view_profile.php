@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_COOKIE["login"]) && !isset($_SESSION["user"])){
     header("location:login.php");
-  }
+ }
 else{
 	$email= $_COOKIE["login"];
 	$sess=$_SESSION["user"];
